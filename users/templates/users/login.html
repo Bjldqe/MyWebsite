@@ -1,0 +1,49 @@
+{% extends 'users/base.html' %}
+
+
+{% block head %}
+{% load static %}
+<link rel="shortcut icon" href="{% static 'users/images/icon.png' %}">
+<title>登录页面</title>
+<style>
+    div {
+        text-align: center;
+        /*可以让盒子内容（文字 行内元素 行内块元素）居中对齐*/
+        width: 600px;
+        height: auto;
+        background-color: pink;
+        /* margin: 0 auto; 通俗写法 0 auto  上下是 0  左右是auto  自动  水平居中对齐 */
+        /* margin-left: auto;
+		 margin-right: auto; 自动充满*/
+        /* margin: auto; 上下左右都是auto*/
+        margin: auto;
+
+    }
+</style>
+<audio src="{% static 'users/music/bgm.mp3' %}" id="aud" autoplay="autoplay" controls="controls"
+        preload="auto"></audio>
+
+{% endblock head %}
+
+
+{% block content %}
+<div class="box">
+    <a href="/" class=" navbar-item">
+    <img src="{% static 'users/images/logo.png' %}" width="140" height="99" alt="logo">
+    </a>
+    <h1 class="is-uppercase has-text-centered has-text-weight-bold">Welcome!
+        <br><span class="tag">立即登录,顷刻访问博主北极来的企鹅的别样世界！</span>
+        </h1>
+        <hr class=" dropdown-divider">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <a class=" is-pulled-right is-size-7" href="{% url 'users:forget_pwd' %}">忘记密码?</a>
+            <!-- <div class=" is-clearfix"></div> -->
+            <a href="{% url 'users:register' %}" id="load">
+                <button class="button is-text "  type="button" style="margin-top: 1em;">注册</button>
+            </a>
+            <input type="submit" style="margin-top: 1em;" class="button is-link " value="登录">
+        </form>
+    </div>
+{% endblock content %}
